@@ -1,0 +1,28 @@
+<!-- 文章详情页面 -->
+<scroll-view class="container" scroll-y>
+  <view class="article-content" wx:if="{{article}}">
+    <!-- 标题 -->
+    <view class="article-title">{{article.title}}</view>
+    
+    <!-- 元信息 -->
+    <view class="article-meta">
+      <view class="meta-item">{{article.categoryName || article.category}}</view>
+      <view class="meta-item">{{article.createdAt}}</view>
+      <view class="meta-item">阅读 {{article.readCount || 0}}</view>
+    </view>
+    
+    <!-- 封面图 -->
+    <image 
+      class="cover-image" 
+      src="{{article.cover}}" 
+      mode="widthFix" 
+      wx:if="{{article.cover}}"
+    />
+    
+    <!-- 正文 -->
+    <rich-text class="article-body" nodes="{{article.content}}"></rich-text>
+  </view>
+  
+  <!-- 加载状态 -->
+  <view class="loading" wx:else>加载中...</view>
+</scroll-view>

@@ -1,0 +1,13 @@
+.container { padding: 32rpx; background: #F5F5F5; min-height: 100vh; }
+.hospital-name { font-size: 40rpx; font-weight: bold; color: #333; margin-bottom: 12rpx; }
+.hospital-rating { font-size: 30rpx; color: #FAAD14; margin-bottom: 32rpx; }
+.section { background: #FFF; border-radius: 16rpx; padding: 24rpx; margin-bottom: 24rpx; }
+.section-title { font-size: 28rpx; font-weight: 600; color: #999; margin-bottom: 20rpx; }
+.info-row { display: flex; justify-content: space-between; padding: 16rpx 0; border-bottom: 1rpx solid #F0F0F0; }
+.info-row:last-child { border-bottom: none; }
+.label { font-size: 28rpx; color: #666; }
+.value { font-size: 28rpx; color: #333; max-width: 50%; text-align: right; }
+.service-tag { display: inline-block; padding: 8rpx 20rpx; background: rgba(74,144,217,0.1); color: #4A90D9; border-radius: 20rpx; font-size: 26rpx; margin: 0 16rpx 16rpx 0; }
+.content { font-size: 30rpx; color: #333; line-height: 1.8; }
+.btn { margin-top: 24rpx; height: 96rpx; font-size: 32rpx; font-weight: 600; }
+.loading { display: flex; justify-content: center; padding: 100rpx; color: #999; }

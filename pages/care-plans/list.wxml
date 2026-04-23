@@ -1,0 +1,29 @@
+<!-- 护理计划列表 -->
+<view class="container">
+  <view class="plan-list" wx:if="{{plans.length > 0}}">
+    <view 
+      class="plan-card" 
+      wx:for="{{plans}}" 
+      wx:key="id"
+      bindtap="goToDetail"
+      data-plan-id="{{item.id}}"
+    >
+      <view class="plan-header">
+        <view class="plan-title">{{item.title}}</view>
+        <view class="plan-status {{item.status}}">
+          {{item.status === 'active' ? '进行中' : item.status === 'completed' ? '已完成' : '未开始'}}
+        </view>
+      </view>
+      <view class="plan-desc">{{item.description}}</view>
+      <view class="plan-footer">
+        <view class="plan-pet">🐾 {{item.petName || '所有宠物'}}</view>
+        <view class="plan-date">{{item.startDate}} 至 {{item.endDate}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="empty-state" wx:else>
+    <view class="empty-icon">📋</view>
+    <view class="empty-text">暂无护理计划</view>
+  </view>
+</view>

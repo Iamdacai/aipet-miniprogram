@@ -1,0 +1,9 @@
+<scroll-view class="container" scroll-y wx:if="{{plan}}">
+  <view class="plan-title">{{plan.title}}</view>
+  <view class="plan-status {{plan.status}}">{{plan.status === 'active' ? '进行中' : plan.status === 'completed' ? '已完成' : '未开始'}}</view>
+  <view class="section"><view class="section-title">计划描述</view><view class="content">{{plan.description}}</view></view>
+  <view class="section"><view class="section-title">时间范围</view><view class="content">{{plan.startDate}} 至 {{plan.endDate}}</view></view>
+  <view class="section" wx:if="{{plan.petName}}"><view class="section-title">适用宠物</view><view class="content">🐾 {{plan.petName}}</view></view>
+  <view class="section" wx:if="{{plan.tasks && plan.tasks.length}}"><view class="section-title">任务列表</view><view class="task" wx:for="{{plan.tasks}}" wx:key="id"><view class="task-icon {{item.completed ? 'checked' : ''}}">{{item.completed ? '✓' : '○'}}</view><view class="task-content"><view class="task-title">{{item.title}}</view><view class="task-desc">{{item.description}}</view></view></view></view>
+</scroll-view>
+<view class="loading" wx:else>加载中...</view>

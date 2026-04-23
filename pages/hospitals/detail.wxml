@@ -1,0 +1,13 @@
+<scroll-view class="container" scroll-y wx:if="{{hospital}}">
+  <view class="hospital-name">{{hospital.name}}</view>
+  <view class="hospital-rating" wx:if="{{hospital.rating}}">⭐ {{hospital.rating}}分</view>
+  <view class="section"><view class="section-title">基本信息</view>
+    <view class="info-row"><text class="label">地址</text><text class="value">{{hospital.address}}</text></view>
+    <view class="info-row" wx:if="{{hospital.phone}}"><text class="label">电话</text><text class="value" bindtap="callPhone">{{hospital.phone}}</text></view>
+    <view class="info-row" wx:if="{{hospital.hours}}"><text class="label">营业时间</text><text class="value">{{hospital.hours}}</text></view>
+  </view>
+  <view class="section" wx:if="{{hospital.services}}"><view class="section-title">服务项目</view><view class="service-tag" wx:for="{{hospital.services}}" wx:key="*this" wx:for-item="s">{{s}}</view></view>
+  <view class="section" wx:if="{{hospital.description}}"><view class="section-title">医院简介</view><view class="content">{{hospital.description}}</view></view>
+  <button class="btn btn-primary btn-block" bindtap="navigateTo">导航去医院</button>
+</scroll-view>
+<view class="loading" wx:else>加载中...</view>

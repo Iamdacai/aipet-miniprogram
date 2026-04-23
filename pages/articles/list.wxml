@@ -1,0 +1,93 @@
+<!-- 文章列表页面 -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="search-text" 
+        placeholder="搜索健康知识"
+        value="{{searchQuery}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+        bindconfirm="onSearch"
+      />
+    </view>
+  </view>
+
+  <!-- 分类 tabs -->
+  <view class="tabs">
+    <view 
+      class="tab-item {{currentCategory === '' ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-category=""
+    >
+      全部
+    </view>
+    <view 
+      class="tab-item {{currentCategory === 'nutrition' ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-category="nutrition"
+    >
+      营养
+    </view>
+    <view 
+      class="tab-item {{currentCategory === 'training' ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-category="training"
+    >
+      训练
+    </view>
+    <view 
+      class="tab-item {{currentCategory === 'health' ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-category="health"
+    >
+      健康
+    </view>
+    <view 
+      class="tab-item {{currentCategory === 'care' ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-category="care"
+    >
+      护理
+    </view>
+  </view>
+
+  <!-- 文章列表 -->
+  <view class="article-list" wx:if="{{articles.length > 0}}">
+    <view 
+      class="article-card" 
+      wx:for="{{articles}}" 
+      wx:key="id"
+      bindtap="goToDetail"
+      data-article-id="{{item.id}}"
+    >
+      <view class="article-cover" wx:if="{{item.cover}}">
+        <image class="cover-image" src="{{item.cover}}" mode="aspectFill" />
+      </view>
+      <view class="article-content">
+        <view class="article-title">{{item.title}}</view>
+        <view class="article-summary">{{item.summary}}</view>
+        <view class="article-meta">
+          <view class="article-category">{{item.categoryName || item.category}}</view>
+          <view class="article-date">{{item.createdAt}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <view class="empty-icon">📚</view>
+    <view class="empty-text">暂无文章</view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="loading-more" wx:if="{{hasMore}}">
+    <text>加载中...</text>
+  </view>
+  <view class="no-more" wx:elif="{{!hasMore && articles.length > 0}}">
+    <text>没有更多了</text>
+  </view>
+</view>

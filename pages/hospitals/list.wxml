@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="hospital-list" wx:if="{{hospitals.length > 0}}">
+    <view class="hospital-card" wx:for="{{hospitals}}" wx:key="id" bindtap="goToDetail" data-hospital-id="{{item.id}}">
+      <view class="hospital-name">{{item.name}}</view>
+      <view class="hospital-info">
+        <text wx:if="{{item.distance}}">📍 {{item.distance}}</text>
+        <text wx:if="{{item.rating}}">⭐ {{item.rating}}</text>
+      </view>
+      <view class="hospital-address">🏥 {{item.address}}</view>
+      <view class="hospital-tags" wx:if="{{item.tags}}">
+        <view class="tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="empty-state" wx:else><view class="empty-icon">🏥</view><view class="empty-text">暂无医院信息</view></view>
+</view>

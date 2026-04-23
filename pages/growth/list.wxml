@@ -1,0 +1,18 @@
+<view class="container">
+  <picker class="pet-selector" range="{{pets}}" range-key="name" value="{{petIndex}}" bindchange="onPetChange">
+    <view class="pet-picker">{{pets[petIndex]?.name || '选择宠物'}}</view>
+  </picker>
+  <view class="timeline" wx:if="{{records.length > 0}}">
+    <view class="record-item" wx:for="{{records}}" wx:key="id">
+      <view class="record-dot"></view>
+      <view class="record-card">
+        <view class="record-date">{{item.date}}</view>
+        <view class="record-title">{{item.title}}</view>
+        <view class="record-desc">{{item.description}}</view>
+        <image class="record-image" src="{{item.image}}" mode="aspectFill" wx:if="{{item.image}}" />
+      </view>
+    </view>
+  </view>
+  <view class="empty-state" wx:else><view class="empty-icon">📸</view><view class="empty-text">暂无成长记录</view></view>
+  <view class="fab" bindtap="goToAdd">+</view>
+</view>
