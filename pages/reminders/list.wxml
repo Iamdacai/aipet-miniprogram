@@ -1,0 +1,76 @@
+<!-- 提醒列表页面 -->
+<view class="container">
+  <!-- 筛选 tabs -->
+  <view class="tabs">
+    <view 
+      class="tab-item {{currentTab === 0 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="0"
+    >
+      全部
+    </view>
+    <view 
+      class="tab-item {{currentTab === 1 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="1"
+    >
+      未完成
+    </view>
+    <view 
+      class="tab-item {{currentTab === 2 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="2"
+    >
+      已完成
+    </view>
+  </view>
+
+  <!-- 提醒列表 -->
+  <view class="reminder-list" wx:if="{{reminders.length > 0}}">
+    <!-- 按日期分组 -->
+    <view class="date-group" wx:for="{{groupedReminders}}" wx:key="date">
+      <view class="date-header">{{item.date}}</view>
+      
+      <view 
+        class="reminder-item" 
+        wx:for="{{item.reminders}}" 
+        wx:key="id"
+        wx:for-item="reminder"
+        bindtap="goToEdit"
+        data-reminder-id="{{reminder.id}}"
+      >
+        <view class="reminder-icon">
+          {{reminder.type === 'feed' ? '🍽️' : reminder.type === 'medicine' ? '💊' : reminder.type === 'vaccine' ? '💉' : reminder.type === 'deworming' ? '🧪' : '📝'}}
+        </view>
+        
+        <view class="reminder-content">
+          <view class="reminder-title">{{reminder.title}}</view>
+          <view class="reminder-detail">
+            <text wx:if="{{reminder.petName}}">🐾 {{reminder.petName}}</text>
+            <text class="time">{{reminder.time}}</text>
+          </view>
+        </view>
+        
+        <view 
+          class="checkbox {{reminder.completed ? 'checked' : ''}}"
+          catchtap="toggleComplete"
+          data-reminder-id="{{reminder.id}}"
+          data-completed="{{reminder.completed}}"
+        >
+          <text wx:if="{{reminder.completed}}">✓</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <view class="empty-icon">📅</view>
+    <view class="empty-text">还没有提醒事项</view>
+    <view class="empty-desc">添加第一个提醒，不错过重要时刻</view>
+    <button class="btn btn-primary" bindtap="goToAdd">添加提醒</button>
+  </view>
+
+  <!-- 浮动添加按钮 -->
+  <view class="fab" bindtap="goToAdd" wx:if="{{reminders.length > 0}}">+</view>
+</view>

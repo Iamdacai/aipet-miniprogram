@@ -1,0 +1,172 @@
+/* 提醒列表页面样式 */
+
+.container {
+  padding: 0;
+  background-color: #F5F5F5;
+  min-height: 100vh;
+}
+
+/* 筛选 tabs */
+.tabs {
+  display: flex;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #E8E8E8;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 28rpx 0;
+  font-size: 28rpx;
+  color: #666666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #4A90D9;
+  font-weight: 600;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48rpx;
+  height: 4rpx;
+  background-color: #4A90D9;
+  border-radius: 2rpx;
+}
+
+/* 提醒列表 */
+.reminder-list {
+  padding: 24rpx;
+}
+
+.date-group {
+  margin-bottom: 32rpx;
+}
+
+.date-header {
+  font-size: 26rpx;
+  color: #999999;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.reminder-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #F8F9FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.reminder-content {
+  flex: 1;
+}
+
+.reminder-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.reminder-detail {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.reminder-detail .time {
+  margin-left: 16rpx;
+  padding-left: 16rpx;
+  border-left: 1rpx solid #E8E8E8;
+}
+
+.checkbox {
+  width: 48rpx;
+  height: 48rpx;
+  border: 2rpx solid #CCCCCC;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.checkbox.checked {
+  background-color: #52C41A;
+  border-color: #52C41A;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 48rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #999999;
+  margin-bottom: 48rpx;
+}
+
+/* 浮动按钮 */
+.fab {
+  position: fixed;
+  right: 32rpx;
+  bottom: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #4A90D9;
+  color: #FFFFFF;
+  font-size: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 24rpx rgba(74, 144, 217, 0.4);
+  z-index: 999;
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
