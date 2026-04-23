@@ -1,0 +1,68 @@
+<!-- 个人中心页面 -->
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-avatar">👤</view>
+    <view class="user-info">
+      <view class="user-name">{{userInfo?.nickName || '铲屎官'}}</view>
+      <view class="user-phone">{{userInfo?.phone || '未绑定手机号'}}</view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="menu-section">
+    <view class="menu-group">
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/pets/list">
+        <view class="menu-icon">🐾</view>
+        <view class="menu-text">宠物档案</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/reminders/list">
+        <view class="menu-icon">⏰</view>
+        <view class="menu-text">提醒事项</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/care-plans/list">
+        <view class="menu-icon">📋</view>
+        <view class="menu-text">护理计划</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+
+    <view class="menu-group">
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/articles/list">
+        <view class="menu-icon">📚</view>
+        <view class="menu-text">健康知识</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/hospitals/list">
+        <view class="menu-icon">🏥</view>
+        <view class="menu-text">附近医院</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+
+    <view class="menu-group">
+      <view class="menu-item" bindtap="showAbout">
+        <view class="menu-icon">ℹ️</view>
+        <view class="menu-text">关于我们</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="showFeedback">
+        <view class="menu-icon">💬</view>
+        <view class="menu-text">意见反馈</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-section">
+    <button class="btn btn-logout" bindtap="logout">退出登录</button>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text>Ai 宠 v0.1.0</text>
+  </view>
+</view>

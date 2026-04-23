@@ -1,0 +1,203 @@
+<!-- 宠物编辑页面 -->
+<view class="container">
+  <form bindsubmit="onSubmit">
+    <!-- 基本信息 -->
+    <view class="section">
+      <view class="section-title">基本信息</view>
+      
+      <!-- 头像选择 -->
+      <view class="avatar-selector">
+        <view class="avatar-preview">{{formData.avatar || '🐕'}}</view>
+        <view class="avatar-tips">点击切换头像</view>
+        <view class="avatar-options">
+          <view class="avatar-option" wx:for="{{avatarOptions}}" wx:key="*this" bindtap="selectAvatar" data-avatar="{{item}}">
+            {{item}}
+          </view>
+        </view>
+      </view>
+
+      <!-- 名字 -->
+      <view class="form-item">
+        <view class="form-label">名字 <text class="required">*</text></view>
+        <input 
+          class="input" 
+          placeholder="给宠物起个名字"
+          value="{{formData.name}}"
+          bindinput="onInput"
+          data-field="name"
+          maxlength="20"
+        />
+      </view>
+
+      <!-- 物种 -->
+      <view class="form-item">
+        <view class="form-label">物种 <text class="required">*</text></view>
+        <picker 
+          class="picker" 
+          range="{{speciesOptions}}" 
+          range-key="label"
+          value="{{speciesIndex}}"
+          bindchange="onSpeciesChange"
+        >
+          <view class="picker-value">
+            {{speciesOptions[speciesIndex]?.label || '请选择物种'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 品种 -->
+      <view class="form-item">
+        <view class="form-label">品种 <text class="required">*</text></view>
+        <input 
+          class="input" 
+          placeholder="例如：金毛、英短"
+          value="{{formData.breed}}"
+          bindinput="onInput"
+          data-field="breed"
+          maxlength="30"
+        />
+      </view>
+
+      <!-- 性别 -->
+      <view class="form-item">
+        <view class="form-label">性别 <text class="required">*</text></view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{formData.gender === 'male' ? 'active' : ''}}"
+            bindtap="onGenderChange"
+            data-gender="male"
+          >
+            <view class="radio-icon">♂</view>
+            <view class="radio-label">公</view>
+          </view>
+          <view 
+            class="radio-item {{formData.gender === 'female' ? 'active' : ''}}"
+            bindtap="onGenderChange"
+            data-gender="female"
+          >
+            <view class="radio-icon">♀</view>
+            <view class="radio-label">母</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 年龄 -->
+      <view class="form-item">
+        <view class="form-label">年龄（岁）<text class="required">*</text></view>
+        <input 
+          class="input" 
+          type="digit"
+          placeholder="请输入年龄"
+          value="{{formData.age}}"
+          bindinput="onInput"
+          data-field="age"
+          maxlength="2"
+        />
+      </view>
+
+      <!-- 体重 -->
+      <view class="form-item">
+        <view class="form-label">体重（kg）</view>
+        <input 
+          class="input" 
+          type="digit"
+          placeholder="请输入体重"
+          value="{{formData.weight}}"
+          bindinput="onInput"
+          data-field="weight"
+          maxlength="5"
+        />
+      </view>
+
+      <!-- 生日 -->
+      <view class="form-item">
+        <view class="form-label">生日</view>
+        <picker 
+          class="picker" 
+          mode="date" 
+          value="{{formData.birthday}}"
+          bindchange="onBirthdayChange"
+        >
+          <view class="picker-value">
+            {{formData.birthday || '请选择生日'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 毛色 -->
+      <view class="form-item">
+        <view class="form-label">毛色</view>
+        <input 
+          class="input" 
+          placeholder="例如：金色、黑白"
+          value="{{formData.color}}"
+          bindinput="onInput"
+          data-field="color"
+          maxlength="20"
+        />
+      </view>
+    </view>
+
+    <!-- 健康信息 -->
+    <view class="section">
+      <view class="section-title">健康信息</view>
+      
+      <!-- 疫苗接种 -->
+      <view class="form-item checkbox-item">
+        <view class="checkbox-label">已完成疫苗接种</view>
+        <view 
+          class="checkbox {{formData.healthInfo?.vaccinated ? 'checked' : ''}}"
+          bindtap="toggleCheckbox"
+          data-field="vaccinated"
+        >
+          <text wx:if="{{formData.healthInfo?.vaccinated}}">✓</text>
+        </view>
+      </view>
+
+      <!-- 绝育情况 -->
+      <view class="form-item checkbox-item">
+        <view class="checkbox-label">已绝育</view>
+        <view 
+          class="checkbox {{formData.healthInfo?.neutered ? 'checked' : ''}}"
+          bindtap="toggleCheckbox"
+          data-field="neutered"
+        >
+          <text wx:if="{{formData.healthInfo?.neutered}}">✓</text>
+        </view>
+      </view>
+
+      <!-- 过敏史 -->
+      <view class="form-item">
+        <view class="form-label">过敏史</view>
+        <textarea 
+          class="textarea" 
+          placeholder="如有过敏史请填写"
+          value="{{formData.healthInfo?.allergies}}"
+          bindinput="onHealthInput"
+          data-field="allergies"
+          maxlength="200"
+        />
+      </view>
+
+      <!-- 备注 -->
+      <view class="form-item">
+        <view class="form-label">备注</view>
+        <textarea 
+          class="textarea" 
+          placeholder="其他需要说明的信息"
+          value="{{formData.healthInfo?.notes}}"
+          bindinput="onHealthInput"
+          data-field="notes"
+          maxlength="500"
+        />
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-bar">
+      <button class="btn btn-primary btn-block" formType="submit" disabled="{{!canSubmit}}">
+        {{isEdit ? '保存修改' : '添加宠物'}}
+      </button>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,64 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/pets/list",
+    "pages/pets/detail",
+    "pages/pets/edit",
+    "pages/reminders/list",
+    "pages/reminders/edit",
+    "pages/articles/list",
+    "pages/articles/detail",
+    "pages/care-plans/list",
+    "pages/care-plans/detail",
+    "pages/hospitals/list",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4A90D9",
+    "navigationBarTitleText": "Ai 宠",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4A90D9",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/pets/list",
+        "text": "宠物",
+        "iconPath": "images/tabbar/pet.png",
+        "selectedIconPath": "images/tabbar/pet-active.png"
+      },
+      {
+        "pagePath": "pages/reminders/list",
+        "text": "提醒",
+        "iconPath": "images/tabbar/reminder.png",
+        "selectedIconPath": "images/tabbar/reminder-active.png"
+      },
+      {
+        "pagePath": "pages/articles/list",
+        "text": "知识",
+        "iconPath": "images/tabbar/article.png",
+        "selectedIconPath": "images/tabbar/article-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tabbar/profile.png",
+        "selectedIconPath": "images/tabbar/profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

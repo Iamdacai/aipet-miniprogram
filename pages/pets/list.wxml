@@ -1,0 +1,32 @@
+<!-- 宠物列表页面 -->
+<view class="container">
+  <!-- 宠物列表 -->
+  <view class="pet-list" wx:if="{{pets.length > 0}}">
+    <view class="pet-card" wx:for="{{pets}}" wx:key="id" bindtap="goToDetail" data-pet-id="{{item.id}}">
+      <view class="pet-avatar">{{item.avatar || '🐕'}}</view>
+      <view class="pet-info">
+        <view class="pet-name">{{item.name}}</view>
+        <view class="pet-detail">
+          <text>{{item.breed}}</text>
+          <text class="divider">·</text>
+          <text>{{item.gender === 'male' ? '公' : '母'}}</text>
+          <text class="divider">·</text>
+          <text>{{item.age}}岁</text>
+        </view>
+        <view class="pet-weight" wx:if="{{item.weight}}">体重：{{item.weight}}kg</view>
+      </view>
+      <view class="pet-arrow">></view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <view class="empty-icon">🐾</view>
+    <view class="empty-text">还没有宠物档案</view>
+    <view class="empty-desc">添加第一只宠物，开始健康管理</view>
+    <button class="btn btn-primary" bindtap="goToAdd">添加宠物</button>
+  </view>
+
+  <!-- 浮动添加按钮 -->
+  <view class="fab" bindtap="goToAdd" wx:if="{{pets.length > 0}}">+</view>
+</view>

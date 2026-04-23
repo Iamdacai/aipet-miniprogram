@@ -1,0 +1,76 @@
+<!-- 宠物详情页面 -->
+<view class="container" wx:if="{{pet}}">
+  <!-- 宠物头像卡片 -->
+  <view class="header-card">
+    <view class="pet-avatar">{{pet.avatar || '🐕'}}</view>
+    <view class="pet-name">{{pet.name}}</view>
+    <view class="pet-tags">
+      <view class="tag tag-primary">{{pet.breed}}</view>
+      <view class="tag tag-success">{{pet.gender === 'male' ? '公' : '母'}}</view>
+      <view class="tag tag-warning">{{pet.age}}岁</view>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="section">
+    <view class="section-title">基本信息</view>
+    <view class="info-grid">
+      <view class="info-item">
+        <view class="info-label">品种</view>
+        <view class="info-value">{{pet.breed || '-'}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">性别</view>
+        <view class="info-value">{{pet.gender === 'male' ? '公' : '母'}}</view>
+      </view>
+      <view class="info-item">
+        <view class="info-label">年龄</view>
+        <view class="info-value">{{pet.age}} 岁</view>
+      </view>
+      <view class="info-item" wx:if="{{pet.weight}}">
+        <view class="info-label">体重</view>
+        <view class="info-value">{{pet.weight}} kg</view>
+      </view>
+      <view class="info-item" wx:if="{{pet.birthday}}">
+        <view class="info-label">生日</view>
+        <view class="info-value">{{pet.birthday}}</view>
+      </view>
+      <view class="info-item" wx:if="{{pet.color}}">
+        <view class="info-label">毛色</view>
+        <view class="info-value">{{pet.color}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 健康信息 -->
+  <view class="section" wx:if="{{pet.healthInfo}}">
+    <view class="section-title">健康信息</view>
+    <view class="info-list">
+      <view class="info-row" wx:if="{{pet.healthInfo.vaccinated}}">
+        <view class="info-row-label">疫苗接种</view>
+        <view class="info-row-value tag tag-success">已完成</view>
+      </view>
+      <view class="info-row" wx:if="{{pet.healthInfo.neutered}}">
+        <view class="info-row-label">绝育情况</view>
+        <view class="info-row-value tag tag-primary">已绝育</view>
+      </view>
+      <view class="info-row" wx:if="{{pet.healthInfo.allergies}}">
+        <view class="info-row-label">过敏史</view>
+        <view class="info-row-value">{{pet.healthInfo.allergies}}</view>
+      </view>
+      <view class="info-row" wx:if="{{pet.healthInfo.notes}}">
+        <view class="info-row-label">备注</view>
+        <view class="info-row-value">{{pet.healthInfo.notes}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button class="btn btn-secondary" bindtap="goToEdit">编辑</button>
+    <button class="btn btn-error" bindtap="deletePet">删除</button>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading" wx:else>加载中...</view>

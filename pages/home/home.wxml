@@ -1,0 +1,104 @@
+<!-- 首页 -->
+<view class="container">
+  <!-- 顶部问候 -->
+  <view class="header">
+    <view class="greeting">
+      <text class="greeting-text">{{greetingText}}</text>
+      <text class="user-name" wx:if="{{userInfo}}">{{userInfo.nickName || '铲屎官'}}</text>
+    </view>
+    <view class="weather" wx:if="{{weather}}">
+      <text class="weather-icon">{{weather.icon}}</text>
+      <text class="weather-temp">{{weather.temp}}°C</text>
+    </view>
+  </view>
+
+  <!-- 快捷功能入口 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToPage" data-url="/pages/pets/list">
+      <view class="action-icon">🐾</view>
+      <view class="action-text">宠物档案</view>
+    </view>
+    <view class="action-item" bindtap="goToPage" data-url="/pages/reminders/list">
+      <view class="action-icon">⏰</view>
+      <view class="action-text">提醒事项</view>
+    </view>
+    <view class="action-item" bindtap="goToPage" data-url="/pages/articles/list">
+      <view class="action-icon">📚</view>
+      <view class="action-text">健康知识</view>
+    </view>
+    <view class="action-item" bindtap="goToPage" data-url="/pages/hospitals/list">
+      <view class="action-icon">🏥</view>
+      <view class="action-text">附近医院</view>
+    </view>
+  </view>
+
+  <!-- 宠物卡片 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">我的宠物</text>
+      <text class="section-more" bindtap="goToPage" data-url="/pages/pets/list">查看全部 ></text>
+    </view>
+    
+    <view class="pet-list" wx:if="{{pets.length > 0}}">
+      <view class="pet-card" wx:for="{{pets}}" wx:key="id" bindtap="goToPetDetail" data-pet-id="{{item.id}}">
+        <view class="pet-avatar">{{item.avatar || '🐕'}}</view>
+        <view class="pet-info">
+          <view class="pet-name">{{item.name}}</view>
+          <view class="pet-detail">{{item.breed}} · {{item.gender === 'male' ? '公' : '母'}} · {{item.age}}岁</view>
+        </view>
+        <view class="pet-arrow">></view>
+      </view>
+    </view>
+    
+    <view class="empty-pets" wx:else>
+      <view class="empty-icon">🐾</view>
+      <view class="empty-text">还没有宠物档案</view>
+      <button class="btn btn-primary btn-small" bindtap="goToPage" data-url="/pages/pets/edit">添加宠物</button>
+    </view>
+  </view>
+
+  <!-- 今日提醒 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">今日提醒</text>
+      <text class="section-more" bindtap="goToPage" data-url="/pages/reminders/list">查看全部 ></text>
+    </view>
+    
+    <view class="reminder-list" wx:if="{{todayReminders.length > 0}}">
+      <view class="reminder-item" wx:for="{{todayReminders}}" wx:key="id">
+        <view class="reminder-icon">{{item.type === 'feed' ? '🍽️' : item.type === 'medicine' ? '💊' : '📝'}}</view>
+        <view class="reminder-content">
+          <view class="reminder-title">{{item.title}}</view>
+          <view class="reminder-time">{{item.time}}</view>
+        </view>
+        <view class="reminder-status {{item.completed ? 'completed' : ''}}">
+          {{item.completed ? '✓' : '○'}}
+        </view>
+      </view>
+    </view>
+    
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">📅</view>
+      <view class="empty-text">今天没有提醒事项</view>
+    </view>
+  </view>
+
+  <!-- 健康资讯 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">健康资讯</text>
+      <text class="section-more" bindtap="goToPage" data-url="/pages/articles/list">查看更多 ></text>
+    </view>
+    
+    <view class="article-list" wx:if="{{articles.length > 0}}">
+      <view class="article-item" wx:for="{{articles}}" wx:key="id" bindtap="goToArticleDetail" data-article-id="{{item.id}}">
+        <view class="article-title">{{item.title}}</view>
+        <view class="article-desc">{{item.summary}}</view>
+        <view class="article-meta">
+          <text class="article-category">{{item.category}}</text>
+          <text class="article-date">{{item.createdAt}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

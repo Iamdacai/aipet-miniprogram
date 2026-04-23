@@ -1,0 +1,241 @@
+# 🐕 Ai 宠 - 微信小程序
+
+**版本：** v0.1.0  
+**创建时间：** 2026-04-23  
+**状态：** 开发中  
+
+宠物健康管理平台微信小程序，复制自 Flutter Web 前端所有功能。
+
+---
+
+## 📋 功能清单
+
+### 已实现 ✅
+
+| 模块 | 功能 | 状态 |
+|------|------|------|
+| **项目基础** | 项目配置、全局样式、工具函数、API 封装 | ✅ |
+| **用户认证** | 验证码登录、用户信息管理 | ✅ |
+| **首页** | 仪表盘、快捷入口、宠物卡片、今日提醒、健康资讯 | ✅ |
+| **宠物档案** | 列表、详情、创建/编辑、删除 | ✅ |
+| **个人中心** | 用户信息、功能菜单、退出登录 | ✅ |
+
+### 待开发 🚧
+
+| 模块 | 功能页面 | 优先级 |
+|------|----------|--------|
+| **提醒管理** | 列表、创建/编辑、删除、完成 | P0 |
+| **知识库** | 文章列表、详情、搜索、分类 | P1 |
+| **护理计划** | 列表、详情、创建/编辑 | P1 |
+| **医院查询** | 列表、详情、地图导航 | P2 |
+| **成长记录** | 列表、添加、编辑 | P2 |
+
+---
+
+## 🛠️ 技术栈
+
+- **框架：** 微信小程序原生开发
+- **API 通信：** wx.request 封装
+- **本地存储：** wx.setStorageSync / wx.getStorageSync
+- **UI 风格：** 清新蓝色系 (#4A90D9)
+
+---
+
+## 📁 项目结构
+
+```
+aipet-miniprogram/
+├── app.js                    # 小程序入口（全局逻辑）
+├── app.json                  # 小程序配置（页面路由、tabBar）
+├── app.wxss                  # 全局样式
+├── project.config.json       # 项目配置（AppID 等）
+├── project.private.config.json  # 私有配置（不提交）
+├── sitemap.json              # 索引配置
+├── utils/
+│   ├── api.js               # API 接口封装
+│   └── util.js              # 工具函数
+├── images/
+│   └── tabbar/              # 底部导航图标
+└── pages/
+    ├── login/               # 登录页 ✅
+    ├── home/                # 首页 ✅
+    ├── pets/                # 宠物模块 ✅
+    │   ├── list.js/wxml/wxss/json
+    │   ├── detail.js/wxml/wxss/json
+    │   └── edit.js/wxml/wxss/json
+    ├── reminders/           # 提醒模块 🚧
+    │   ├── list.js/wxml/wxss/json
+    │   └── edit.js/wxml/wxss/json
+    ├── articles/            # 知识库 🚧
+    │   ├── list.js/wxml/wxss/json
+    │   └── detail.js/wxml/wxss/json
+    ├── care-plans/          # 护理计划 🚧
+    ├── hospitals/           # 医院查询 🚧
+    └── profile/             # 个人中心 ✅
+```
+
+---
+
+## 🚀 快速开始
+
+### 1. 配置 AppID
+
+在 `project.config.json` 中修改为你的小程序 AppID：
+
+```json
+{
+  "appid": "wxXXXXXXXXXXXXXXXX"
+}
+```
+
+### 2. 微信开发者工具
+
+1. 下载并安装 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+2. 导入项目：选择 `aipet-miniprogram` 目录
+3. 配置 AppID（或使用测试号）
+4. 编译运行
+
+### 3. 开发调试
+
+- **编译：** Ctrl/Cmd + B
+- **预览：** 扫码在真机预览
+- **调试：** 使用开发者工具的 Console 和 Network 面板
+
+---
+
+## 🔌 API 配置
+
+**生产环境：** `https://caiyuyang.cn`
+
+所有 API 请求会自动添加 `Authorization: Bearer <token>` 头（登录后）。
+
+### API 接口清单
+
+| 模块 | 接口 | 说明 |
+|------|------|------|
+| **认证** | POST `/api/auth/send-code` | 发送验证码 |
+| | POST `/api/auth/login` | 验证码登录 |
+| | GET `/api/auth/profile` | 获取用户信息 |
+| **宠物** | GET `/api/pets` | 宠物列表 |
+| | GET `/api/pets/:id` | 宠物详情 |
+| | POST `/api/pets` | 创建宠物 |
+| | PUT `/api/pets/:id` | 更新宠物 |
+| | DELETE `/api/pets/:id` | 删除宠物 |
+| **提醒** | GET `/api/reminders` | 提醒列表 |
+| | POST `/api/reminders` | 创建提醒 |
+| | PUT `/api/reminders/:id` | 更新提醒 |
+| | DELETE `/api/reminders/:id` | 删除提醒 |
+| **文章** | GET `/api/articles` | 文章列表 |
+| | GET `/api/articles/:id` | 文章详情 |
+| | GET `/api/articles/search` | 搜索文章 |
+
+---
+
+## 📝 开发规范
+
+### 文件命名
+
+- 页面文件：`page.wxml`, `page.wxss`, `page.js`, `page.json`
+- 组件文件：`component.wxml`, `component.wxss`, `component.js`, `component.json`
+- 工具函数：小驼峰，如 `util.js`, `api.js`
+
+### 代码风格
+
+- 缩进：2 空格
+- 字符串：单引号
+- 分号：必须
+- 注释：JSDoc 风格
+
+### 样式规范
+
+- 使用 rpx 单位（响应式像素）
+- 全局变量定义在 `app.wxss`
+- 组件样式隔离
+
+---
+
+## 📦 构建发布
+
+### 1. 上传代码
+
+在微信开发者工具中：
+1. 点击右上角「上传」
+2. 填写版本号和备注
+3. 上传到微信服务器
+
+### 2. 提交审核
+
+登录 [微信公众平台](https://mp.weixin.qq.com/)：
+1. 版本管理 → 选择刚上传的版本
+2. 提交审核
+3. 填写审核信息（功能介绍、测试账号等）
+
+### 3. 发布上线
+
+审核通过后：
+1. 版本管理 → 点击「发布」
+2. 用户即可搜索到小程序
+
+---
+
+## 🔐 注意事项
+
+### 微信小程序限制
+
+1. **域名白名单**：`https://caiyuyang.cn` 需在微信公众平台配置
+2. **HTTPS**：所有网络请求必须使用 HTTPS
+3. **用户隐私**：需遵守《微信小程序用户隐私保护指引》
+4. **内容审核**：UGC 内容需接入内容安全 API
+
+### 性能优化
+
+- 图片压缩（使用 WebP 格式）
+- 分包加载（页面较多时）
+- 数据缓存（减少重复请求）
+- 按需加载（长列表虚拟滚动）
+
+---
+
+## 📊 开发进度
+
+```
+总进度：50%
+
+[████████████████████░░░░░░░░░░░░] 
+
+✅ 项目初始化 (100%)
+✅ 用户认证 (100%)
+✅ 首页 (100%)
+✅ 宠物档案 (100%)
+✅ 个人中心 (100%)
+🚧 提醒管理 (0%)
+🚧 知识库 (0%)
+🚧 护理计划 (0%)
+🚧 医院查询 (0%)
+🚧 成长记录 (0%)
+```
+
+---
+
+## 📞 联系方式
+
+- **项目地址：** `/home/admin/.openclaw/workspace/git-repos/aipet-miniprogram`
+- **后端服务：** `https://caiyuyang.cn:4000`
+- **开发团队：** Ai 宠团队
+
+---
+
+## 📝 更新日志
+
+### v0.1.0 (2026-04-23)
+- ✅ 项目初始化完成
+- ✅ 用户认证（验证码登录）
+- ✅ 首页（仪表盘、快捷入口、宠物卡片、今日提醒、健康资讯）
+- ✅ 宠物档案（列表、详情、创建/编辑、删除）
+- ✅ 个人中心（用户信息、功能菜单、退出登录）
+- ✅ API 接口封装（宠物、提醒、文章、护理计划、医院、成长记录）
+- ✅ 工具函数库（日期格式化、验证、提示等）
+
+---
+
+*最后更新：2026-04-23*
